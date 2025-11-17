@@ -44,6 +44,11 @@ SPRING_PROFILES_ACTIVE=prod ./mvnw spring-boot:run
 ```
 O endpoint de health fica disponível em `http://localhost:8080/actuator/health`.
 
+## Multi-tenancy
+- Todos os requests protegidos devem enviar o cabeçalho `X-Tenant-ID`.
+- O `TenantResolverInterceptor` valida o tenant (via `TenantProvider`) e disponibiliza o contexto através de `TenantContextHolder`.
+- Paths ignorados (ex.: `/actuator/**`) podem ser configurados em `tenancy.ignored-paths`.
+
 ## Próximos passos
 - Implementar os agregados e casos de uso em cada módulo.
 - Adicionar migrations Flyway em `src/main/resources/db/migration`.
